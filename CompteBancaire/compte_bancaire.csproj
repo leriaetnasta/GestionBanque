@@ -36,6 +36,10 @@
     <Compile Include="Compte.cs" />
     <Compile Include="MAD.cs" />
     <Compile Include="EmptyClass.cs" />
+    <Compile Include="CompteEpargne.cs" />
+    <Compile Include="CompteCourant.cs" />
+    <Compile Include="Operation.cs" />
+    <Compile Include="Date.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

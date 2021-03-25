@@ -4,11 +4,17 @@ namespace compte_bancaire
     public class Compte
     {
         
-        private int numcompte;
-        private static int cpt = 1;
+        private readonly int numcompte;
+        private static int cpt;
         private Client titulaire;
-        private Mad solde;
-        private static Mad plafond = new Mad(3500);
+        protected Mad solde;
+        protected static Mad plafond;
+        ArraySegment<Operation> op;
+        static Compte()
+        {
+            cpt = 1;
+            plafond = new Mad(3500);
+        }
 
         public Compte(double s, string n, string p, string a)
         {
@@ -23,28 +29,50 @@ namespace compte_bancaire
             solde.afficher();
 
         }
-        public void Crediter(Mad amount)
-        {
-            solde += amount;
-        }
-
-        public bool Debiter(Mad amount)
+        public bool Crediter(Mad amount)
         {
             Mad Null = new Mad(0);
-            if (amount <= solde && amount <= plafond && amount >= Null)
+            if (amount >= Null)
             {
-                solde -= amount;
+                solde += amount;
                 return true;
+
             }
             return false;
         }
 
-        public void Virement(Compte Compte2, Mad amount)
+        public virtual bool Debiter(Mad amount)
         {
-            if (this.Debiter(amount) == true)
+            Mad Null = new Mad(0);
+            if (amount <= solde)
             {
-                Compte2.Crediter(amount);
+                if (amount <= plafond)
+                {
+                    if (amount >= Null)
+                    {
+                        solde -= amount;
+                        return true;
+                    }
+                    else {
+                       Console.WriteLine("somme <0");
+                       return false; }
+                }
+                else { Console.WriteLine("somme>plafond");
+                        return false; }
+
             }
+            else { Console.WriteLine("solde insuffisant");
+                return false;
+            }
+
+            
         }
+
+        public bool Virement(Compte Compte2, Mad amount)
+        {
+            return (this.Debiter(amount) && Compte2.Crediter(amount));
+            
+        }
+        public 
     }
 }
