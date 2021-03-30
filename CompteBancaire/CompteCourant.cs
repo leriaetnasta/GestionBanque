@@ -12,7 +12,7 @@ namespace compte_bancaire
         public override bool Debiter(Mad amount)
         {
             
-            if (amount > decouvert) {
+            if () {
                 
                 return base.Debiter(amount);
             }
