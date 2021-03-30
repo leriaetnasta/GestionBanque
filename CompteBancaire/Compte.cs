@@ -75,10 +75,10 @@ namespace compte_bancaire
         }
         public 
     }
-    public bool comparerDec(Mad amount, Mad dec){
-    if(this.solde - amount > decouvert){
-        return true;
-    }
-        return false;
-    }
+        public bool comparerDec(Mad amount, Mad dec){
+            if(this.solde - amount > decouvert){
+              return true;
+            }
+              return false;
+        }
 }
