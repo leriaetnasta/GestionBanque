@@ -8,7 +8,7 @@ namespace compte_bancaire
 
         public CompteEpargne(double t, double s, string n, string p, string a) :base(s,n,p,a)
         {
-            while(t < 0 && t > 100)
+            while(t < 0 || t > 100)
             {
                 Console.WriteLine("entrer un taux juste");
                 t=double.Parse(Console.ReadLine());
